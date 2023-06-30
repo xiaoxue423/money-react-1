@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import {
-  HashRouter as Router,
-  Route,
   Link,
-  Switch,
-  Redirect,
 } from "react-router-dom";
 import Icon from "./Icon";
 

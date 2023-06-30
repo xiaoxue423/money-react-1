@@ -1,66 +1,30 @@
-import Nav from "components/Nav";
 import React from "react";
-import {
-  HashRouter as Router,
-  Route,
-  Link,
-  Switch,
-  Redirect,
-} from "react-router-dom";
-import styled from "styled-components";
-
-
-const Wrapper = styled.div`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-`;
-const Main = styled.div`
-  flex-grow: 1;
-  overflow: auto;
-`;
-
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import Tag from "views/Tag";
+import Money from "views/Money";
+import Statistics from "views/Statistics";
 
 function App() {
   return (
     <Router>
-      <Wrapper>
-        <Main>
-          <Switch>
-            <Route path="/tags" component={Tag} />
-            <Route path="/money" component={Money} />
-            <Route path="/statistics" component={Statistics} />
-            <Redirect exact from="/" to="/money" />
-            <Route path="/*" component={NoMatch} />
-          </Switch>
-        </Main>
-        <Nav />
-      </Wrapper>
+      <Routes>
+        <Route path="/tags" element={<Tag />} />
+        <Route path="/money" element={<Money />} />
+        <Route path="/statistics" element={<Statistics />} />
+        {/* <Route path="/" render={() => <Navigate to="about-us" />} /> */}
+        {/* <Redirect exact from="/" to="/money" /> */}
+        <Route path="/*" element={<NoMatch />} />
+      </Routes>
     </Router>
   );
 }
 
-const NoMatch = () => (
-  <div>
-    <h2>404页面</h2>
-  </div>
-);
-
-const Tag = () => (
-  <div>
-    <h2>标签页面</h2>
-  </div>
-);
-
-const Money = () => (
-  <div>
-    <h2>记账页面1111</h2>
-  </div>
-);
-const Statistics = () => (
-  <div>
-    <h2>statistics</h2>
-  </div>
-);
+const NoMatch = () => {
+  return (
+    <div>
+      <h2>404页面</h2>
+    </div>
+  );
+};
 
 export default App;
