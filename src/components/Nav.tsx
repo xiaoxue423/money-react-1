@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import Icon from "./Icon";
+import { NavLink } from "react-router-dom";
 
 const NavWrapper = styled.nav`
   line-height: 24px;
@@ -18,31 +18,41 @@ const NavWrapper = styled.nav`
           width: 24px;
           height: 24px;
         }
+        &.selected {
+          color: red;
+          .icon{
+            fill: red;
+          }
+        }
       }
     }
   }
 `;
+
+const getActiveClass = ({ isActive }) => {
+  return isActive ? "selected" : "";
+};
 const Nav = () => {
   return (
     <NavWrapper>
       <ul>
         <li>
-          <Link to="/tags">
+          <NavLink to="/tags" className={getActiveClass}>
             <Icon name="tag" />
             标签
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link to="/money">
-            记账
+          <NavLink to="/money" className={getActiveClass}>
             <Icon name="money" />
-          </Link>
+            记账
+          </NavLink>
         </li>
         <li>
-          <Link to="/statistics">
+          <NavLink to="/statistics" className={getActiveClass}>
             <Icon name="chat" />
             统计
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </NavWrapper>
