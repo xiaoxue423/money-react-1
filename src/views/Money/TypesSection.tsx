@@ -1,6 +1,7 @@
+import { useState } from "react";
 import styled from "styled-components";
 
-const TypesSection = styled.section`
+const Wrapper = styled.section`
   font-size: 24px;
   > ul {
     display: flex;
@@ -24,4 +25,30 @@ const TypesSection = styled.section`
   }
 `;
 
+const TypesSection = () => {
+  const [type, setType] = useState("-"); // + 表示收入 - 表示支出
+
+  return (
+    <Wrapper>
+      <ul>
+        <li
+          className={type === "-" ? "selected" : ""}
+          onClick={() => {
+            setType("-");
+          }}
+        >
+          支出
+        </li>
+        <li
+          className={type === "+" ? "selected" : ""}
+          onClick={() => {
+            setType("+");
+          }}
+        >
+          收入
+        </li>
+      </ul>
+    </Wrapper>
+  );
+};
 export { TypesSection };
