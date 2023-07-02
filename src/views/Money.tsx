@@ -6,24 +6,15 @@ import { NotesSection } from "./Money/NotesSection";
 import { TypesSection } from "./Money/TypesSection";
 import { NumberPadSection } from "./Money/NumberPadSection";
 
-
 const MyLayout = styled(Layout)`
   border: 1px solid red;
   display: flex;
   flex-direction: column;
-`
+`;
 function Money() {
   return (
     <MyLayout className="hi">
-      <TagsSection>
-        <ol>
-          <li>衣</li>
-          <li>食</li>
-          <li>住</li>
-          <li>行</li>
-        </ol>
-        <button>新增标签</button>
-      </TagsSection>
+      <TagsSection />
       <NotesSection>
         <label>
           <span>备注</span>
