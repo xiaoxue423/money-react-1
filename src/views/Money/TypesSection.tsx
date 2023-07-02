@@ -26,27 +26,25 @@ const Wrapper = styled.section`
 `;
 
 const TypesSection = () => {
+  const typeMap = { "-": "支出", "+": "收入" };
+  // type X = typeof typeMap;
+  type Keys = keyof typeof typeMap
+  const [typeList] = useState<Keys[]>(["-", "+"]);
   const [type, setType] = useState("-"); // + 表示收入 - 表示支出
 
   return (
     <Wrapper>
       <ul>
-        <li
-          className={type === "-" ? "selected" : ""}
-          onClick={() => {
-            setType("-");
-          }}
-        >
-          支出
-        </li>
-        <li
-          className={type === "+" ? "selected" : ""}
-          onClick={() => {
-            setType("+");
-          }}
-        >
-          收入
-        </li>
+        {typeList.map((c) => (
+          <li
+            className={type === c ? "selected" : ""}
+            onClick={() => {
+              setType(c);
+            }}
+          >
+            {typeMap[c]}
+          </li>
+        ))}
       </ul>
     </Wrapper>
   );
