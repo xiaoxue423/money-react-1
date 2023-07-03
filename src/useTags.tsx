@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const useTags = () => {
+const useTags = () => { // 封装一个自定义Hook
   const [tags, setTags] = useState<string[]>(["衣", "食", "住", "行"]);
 
   return {
