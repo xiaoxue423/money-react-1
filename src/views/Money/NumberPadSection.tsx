@@ -1,16 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import { Wrapper } from "./NumberPadSection/Wrapper";
 import { generateOutput } from "./NumberPadSection/generateOutput";
 
-const NumberPadSection: React.FC = () => {
-  const [output, _setOutPut] = useState("0");
-  const setOutPut = (output:string) => {
-    if(output.length > 16){
-      output = output.slice(0,16)
-    }else if(output.length === 0){
-      output = '0'
+type Props = {
+  value: number;
+  onChange: (value: number) => void;
+  onOk?: () => void;
+};
+
+const NumberPadSection: React.FC<Props> = (props) => {
+  const output = props.value.toString();
+
+  const setOutPut = (output: string) => {
+    let value;
+    if (output.length > 16) {
+      value = parseFloat(output.slice(0, 16));
+    } else if (output.length === 0) {
+      value = 0;
+    } else {
+      value = parseInt(output);
     }
-    _setOutPut(output);
+
+    props.onChange(value);
   };
   const onClickButtonWrapper = (e: React.MouseEvent) => {
     // console.log(e.target);
@@ -18,14 +29,15 @@ const NumberPadSection: React.FC = () => {
     if (text === null) {
       return;
     }
-    if(text === 'OK'){
-      //TODO
+    if (text === "OK") {
+      if (props.onOk) {
+        props.onOk();
+      }
       return;
     }
-    if('0123456789.'.split('').concat(['删除','清空']).indexOf(text) >=0){
-      setOutPut(generateOutput(text,output))
+    if ("0123456789.".split("").concat(["删除", "清空"]).indexOf(text) >= 0) {
+      setOutPut(generateOutput(text, output));
     }
- 
   };
   return (
     <Wrapper>
@@ -43,9 +55,7 @@ const NumberPadSection: React.FC = () => {
         <button>8</button>
         <button>9</button>
         <button className="ok">OK</button>
-        <button className="zero">
-          0
-        </button>
+        <button className="zero">0</button>
         <button className="dot">.</button>
       </div>
     </Wrapper>

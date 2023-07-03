@@ -25,12 +25,13 @@ const Wrapper = styled.section`
   }
 `;
 
-const TypesSection: React.FC = () => {
+type Props = { value: "-" | "+"; onChange: (v: "-" | "+") => void };
+
+const TypesSection: React.FC<Props> = (props) => {
   const typeMap = { "-": "支出", "+": "收入" };
-  // type X = typeof typeMap;
   type Keys = keyof typeof typeMap;
   const [typeList] = useState<Keys[]>(["-", "+"]);
-  const [type, setType] = useState("-"); // + 表示收入 - 表示支出
+  const type = props.value
 
   return (
     <Wrapper>
@@ -40,7 +41,7 @@ const TypesSection: React.FC = () => {
             key={c}
             className={type === c ? "selected" : ""}
             onClick={() => {
-              setType(c);
+              props.onChange(c)
             }}
           >
             {typeMap[c]}
