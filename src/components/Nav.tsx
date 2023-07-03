@@ -30,7 +30,7 @@ const NavWrapper = styled.nav`
   }
 `;
 
-const getActiveClass = ({ isActive }) => {
+const getActiveClass = ({ isActive }: { isActive: boolean }) => {
   return isActive ? "selected" : "";
 };
 const Nav = () => {

@@ -25,10 +25,10 @@ const Wrapper = styled.section`
   }
 `;
 
-const TypesSection = () => {
+const TypesSection: React.FC = () => {
   const typeMap = { "-": "支出", "+": "收入" };
   // type X = typeof typeMap;
-  type Keys = keyof typeof typeMap
+  type Keys = keyof typeof typeMap;
   const [typeList] = useState<Keys[]>(["-", "+"]);
   const [type, setType] = useState("-"); // + 表示收入 - 表示支出
 
@@ -37,6 +37,7 @@ const TypesSection = () => {
       <ul>
         {typeList.map((c) => (
           <li
+            key={c}
             className={type === c ? "selected" : ""}
             onClick={() => {
               setType(c);
