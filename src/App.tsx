@@ -1,9 +1,10 @@
 import React from "react";
 import { HashRouter as Router, Route, Routes } from "react-router-dom";
-import Tag from "views/Tag";
+import Tags from "views/Tags";
 import Money from "views/Money";
 import Statistics from "views/Statistics";
 import styled from "styled-components";
+import {Tag} from "views/Tag";
 
 const AppWrapper = styled.div`
   color: #333;
@@ -14,7 +15,8 @@ function App() {
     <AppWrapper>
       <Router>
         <Routes>
-          <Route path="/tags" element={<Tag />} />
+          <Route path="/tags" element={<Tags />} />
+          <Route path="/tags/:tag" element={<Tag />} />
           <Route path="/money" element={<Money />} />
           <Route path="/statistics" element={<Statistics />} />
           {/* <Route path="/" render={() => <Navigate to="about-us" />} /> */}
