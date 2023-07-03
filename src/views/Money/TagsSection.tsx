@@ -1,3 +1,4 @@
+import { createId } from "lib/createId";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useTags } from "useTags";
@@ -43,7 +44,7 @@ const TagsSection: React.FC<Props> = (props) => {
   const onAddClick = () => {
     const tagName = window.prompt("新标签的名称为");
     if (tagName !== null) {
-      setTags([...tags, { id: Math.random(), name: tagName }]);
+      setTags([...tags, { id: createId(), name: tagName }]);
     }
   };
 
