@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
 const Button = styled.button`
-  color: grey;
-  padding: 20px;
-  background-color: pink;
+  font-size: 18px;
   border: none;
-  &:hover {
-    background-color: yellow;
-  }
+  padding: 8px 12px;
+  background: #f60;
+  border-radius: 4px;
+  color: white;
 `;
 
-export default Button
+export { Button };
