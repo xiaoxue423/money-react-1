@@ -17,7 +17,7 @@ const InputWrapper = styled.div`
   background-color: white;
   padding: 16px;
   margin-top: 8px;
-`
+`;
 const Tag: React.FC = () => {
   const { findTag } = useTags();
 
@@ -42,12 +42,17 @@ const Tag: React.FC = () => {
         <Icon />
       </TopBar>
       <InputWrapper>
-       <Input label="标签名" type="text" placeholder="标签名"/>
+        <Input
+          label="标签名"
+          type="text"
+          placeholder="标签名"
+          value={tag !== "" ? tag?.name : ""}
+        />
       </InputWrapper>
       <Center>
-        <Space/>
-        <Space/>
-        <Space/>
+        <Space />
+        <Space />
+        <Space />
         <Button>删除标签</Button>
       </Center>
     </Layout>
