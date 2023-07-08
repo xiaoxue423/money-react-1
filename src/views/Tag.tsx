@@ -19,11 +19,11 @@ const InputWrapper = styled.div`
   margin-top: 8px;
 `;
 const Tag: React.FC = () => {
-  const { findTag } = useTags();
+  const { findTag,updateTag } = useTags();
 
-  const { id } = useParams<Params>();
+  const { id:idString } = useParams<Params>();
 
-  const tag = id !== undefined ? findTag(parseInt(id)) : "";
+  const tag = findTag(parseInt(idString));
 
   const TopBar = styled.header`
     display: flex;
@@ -46,7 +46,12 @@ const Tag: React.FC = () => {
           label="标签名"
           type="text"
           placeholder="标签名"
-          value={tag !== "" ? tag?.name : ""}
+          value={tag.name}
+          onChange={(e) => {
+            // tag.name = e.target.value;
+            // console.log("tag.name", tag.name);
+            updateTag(tag.id,{name:e.target.value})
+          }}
         />
       </InputWrapper>
       <Center>
