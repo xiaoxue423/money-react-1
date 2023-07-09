@@ -65,19 +65,16 @@ const Tag: React.FC = () => {
       </Center>
     </div>
   );
-  if (tag) {
-    return (
-      <Layout>
-        <TopBar>
-          <Icon name="left" />
-          <span>编辑标签</span>
-          <Icon />
-        </TopBar>
-        {tag ? tagContent(tag) : <Center>tag 不存在</Center>}
-      </Layout>
-    );
-  }
-  return <div>tag不存在</div>;
+  return (
+    <Layout>
+      <TopBar>
+        <Icon name="left" />
+        <span>编辑标签</span>
+        <Icon />
+      </TopBar>
+      {tag ? tagContent(tag) : <Center>tag 不存在</Center>}
+    </Layout>
+  );
 };
 
 export { Tag };
