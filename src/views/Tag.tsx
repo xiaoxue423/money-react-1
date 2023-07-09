@@ -19,9 +19,9 @@ const InputWrapper = styled.div`
   margin-top: 8px;
 `;
 const Tag: React.FC = () => {
-  const { findTag,updateTag } = useTags();
+  const { findTag, updateTag, deleteTag } = useTags();
 
-  const { id:idString } = useParams<Params>();
+  const { id: idString } = useParams<Params>();
 
   const tag = findTag(parseInt(idString));
 
@@ -34,13 +34,10 @@ const Tag: React.FC = () => {
     padding: 14px;
     background: white;
   `;
-  return (
-    <Layout>
-      <TopBar>
-        <Icon name="left" />
-        <span>编辑标签</span>
-        <Icon />
-      </TopBar>
+
+  // 函数：延迟执行的代码
+  const tagContent = (tag: { id: number; name: string }) => (
+    <div>
       <InputWrapper>
         <Input
           label="标签名"
@@ -50,7 +47,7 @@ const Tag: React.FC = () => {
           onChange={(e) => {
             // tag.name = e.target.value;
             // console.log("tag.name", tag.name);
-            updateTag(tag.id,{name:e.target.value})
+            updateTag(tag.id, { name: e.target.value });
           }}
         />
       </InputWrapper>
@@ -58,10 +55,29 @@ const Tag: React.FC = () => {
         <Space />
         <Space />
         <Space />
-        <Button>删除标签</Button>
+        <Button
+          onClick={() => {
+            deleteTag(tag.id);
+          }}
+        >
+          删除标签
+        </Button>
       </Center>
-    </Layout>
+    </div>
   );
+  if (tag) {
+    return (
+      <Layout>
+        <TopBar>
+          <Icon name="left" />
+          <span>编辑标签</span>
+          <Icon />
+        </TopBar>
+        {tag ? tagContent(tag) : <Center>tag 不存在</Center>}
+      </Layout>
+    );
+  }
+  return <div>tag不存在</div>;
 };
 
 export { Tag };
